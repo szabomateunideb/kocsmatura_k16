@@ -25,7 +25,7 @@ public class FelhasznaloEntity {
     private Date szuletesiDatum;
     @Column(name = "sex")
     private String nem;
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String felhasznalonev;
     @Column(name = "password")
     private String jelszo;

@@ -30,6 +30,8 @@ public class VisszajelzesEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private FelhasznaloEntity felhasznalo;
-
+    @ManyToOne
+    @JoinColumn(name = "kocsma_id")
+    private KocsmaEntity kocsma;
 
 }

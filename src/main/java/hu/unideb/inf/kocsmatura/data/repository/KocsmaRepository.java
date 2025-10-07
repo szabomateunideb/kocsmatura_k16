@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface KocsmaRepository
         extends JpaRepository<KocsmaEntity, Long> {
+
+    KocsmaEntity getByNev(String nev);
+
+    Object nev(String nev);
 }

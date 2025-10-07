@@ -32,7 +32,15 @@ public class KocsmaCardServiceImpl implements KocsmaCardService {
 
     @Override
     public KocsmaCardDto findByName(String name) {
-        return null;
+        return mapper.map(repo.getByNev(name), KocsmaCardDto.class);
+
+        /*KocsmaEntity e = null;
+        for(KocsmaEntity entity : repo.findAll()){
+            if(entity.getNev().equals(name)){
+                e = entity;
+            }
+        }
+        return mapper.map(e, KocsmaCardDto.class);*/
     }
 
     @Override

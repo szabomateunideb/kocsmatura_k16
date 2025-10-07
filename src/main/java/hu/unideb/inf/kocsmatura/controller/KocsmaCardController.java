@@ -4,10 +4,7 @@ import hu.unideb.inf.kocsmatura.service.KocsmaCardService;
 import hu.unideb.inf.kocsmatura.service.dto.KocsmaCardDto;
 import jakarta.persistence.Access;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/pub")
@@ -38,4 +35,11 @@ public class KocsmaCardController {
     KocsmaCardDto findById(@RequestParam Long id){
         return kocsmaCardService.findById(id);
     }
+
+    //localhost:9090/api/byName/xy
+    @GetMapping("/byName/{name}")
+    KocsmaCardDto findByName(@PathVariable String name) {
+        return kocsmaCardService.findByName(name);
+    }
+
 }

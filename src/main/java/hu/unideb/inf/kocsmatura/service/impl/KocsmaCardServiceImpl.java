@@ -24,7 +24,10 @@ public class KocsmaCardServiceImpl implements KocsmaCardService {
 
     @Override
     public KocsmaCardDto findById(Long id) {
-        return null;
+        /*KocsmaEntity e = repo.getReferenceById(id);
+        KocsmaCardDto dto = mapper.map(e, KocsmaCardDto.class);
+        return dto;*/
+        return mapper.map(repo.getReferenceById(id), KocsmaCardDto.class);
     }
 
     @Override

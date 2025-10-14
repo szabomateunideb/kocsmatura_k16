@@ -42,4 +42,10 @@ public class KocsmaCardController {
         return kocsmaCardService.findByName(name);
     }
 
+    @PostMapping("/save")
+    KocsmaCardDto save(@RequestBody KocsmaCardDto dto){
+        return kocsmaCardService.save(dto);
+    }
+
+
 }

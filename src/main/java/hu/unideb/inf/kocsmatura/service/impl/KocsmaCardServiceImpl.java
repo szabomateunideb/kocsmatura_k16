@@ -5,9 +5,12 @@ import hu.unideb.inf.kocsmatura.data.repository.KocsmaRepository;
 import hu.unideb.inf.kocsmatura.service.KocsmaCardService;
 import hu.unideb.inf.kocsmatura.service.dto.KocsmaCardDto;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
+import org.modelmapper.internal.bytebuddy.description.method.MethodDescription;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Service
@@ -45,7 +48,10 @@ public class KocsmaCardServiceImpl implements KocsmaCardService {
 
     @Override
     public List<KocsmaCardDto> findAll() {
-        return List.of();
+        List<KocsmaEntity> entities = repo.findAll();
+        Type listType = new TypeToken<List<KocsmaCardDto>>(){}.getType();
+
+        return mapper.map(entities, listType);
     }
 
     @Override

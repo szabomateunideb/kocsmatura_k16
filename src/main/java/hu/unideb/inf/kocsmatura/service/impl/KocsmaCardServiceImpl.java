@@ -71,10 +71,28 @@ public class KocsmaCardServiceImpl implements KocsmaCardService {
 
     @Override
     public KocsmaCardDto save(KocsmaCardDto kocsmaCardDto) {
-        KocsmaEntity entity =  mapper
-                .map(kocsmaCardDto, KocsmaEntity.class);
-        entity = repo.save(entity);
-        kocsmaCardDto = mapper.map(entity, KocsmaCardDto.class);
-        return kocsmaCardDto;
+        if (kocsmaCardDto.getId() == null){
+            //SAVE
+            KocsmaEntity entity =  mapper
+                    .map(kocsmaCardDto, KocsmaEntity.class);
+            entity = repo.save(entity);
+            kocsmaCardDto = mapper.map(entity, KocsmaCardDto.class);
+            return kocsmaCardDto;
+        } else {
+            //UPDATE
+            KocsmaEntity e = repo.getByNev(kocsmaCardDto.getNev());
+
+            e.setNev(kocsmaCardDto.getNev());
+            e.setCim(kocsmaCardDto.getCim());
+            e.setNyitvatartas(kocsmaCardDto.getNyitvatartas());
+            e.setArszint(kocsmaCardDto.getArszint());
+            e.setElerhetoseg(kocsmaCardDto.getElerhetoseg());
+
+            e = repo.save(e);
+
+            return kocsmaMapper.kocsmaEntityToDto(e);
+        }
+
+
     }
 }

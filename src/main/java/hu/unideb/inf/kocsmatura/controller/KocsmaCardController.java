@@ -42,6 +42,7 @@ public class KocsmaCardController {
         return kocsmaCardService.findByName(name);
     }
 
+    //id nem létezik
     @PostMapping("/save")
     KocsmaCardDto save(@RequestBody KocsmaCardDto dto){
         return kocsmaCardService.save(dto);
@@ -50,6 +51,12 @@ public class KocsmaCardController {
     @DeleteMapping("/deleteByName")
     void delByName(@RequestParam String name){
         kocsmaCardService.deleteByName(name);
+    }
+
+    //id létezik
+    @PostMapping("/update")
+    KocsmaCardDto update(@RequestBody KocsmaCardDto dto){
+        return kocsmaCardService.save(dto);
     }
 
 }

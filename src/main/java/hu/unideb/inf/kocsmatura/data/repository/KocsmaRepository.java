@@ -10,5 +10,7 @@ public interface KocsmaRepository
 
     KocsmaEntity getByNev(String nev);
 
-    Object nev(String nev);
+    void deleteByNev(String nev);
+
+    void deleteByNevIgnoreCase(String nev);
 }

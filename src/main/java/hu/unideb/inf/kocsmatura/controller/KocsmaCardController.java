@@ -47,5 +47,9 @@ public class KocsmaCardController {
         return kocsmaCardService.save(dto);
     }
 
+    @DeleteMapping("/deleteByName")
+    void delByName(@RequestParam String name){
+        kocsmaCardService.deleteByName(name);
+    }
 
 }

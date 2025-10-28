@@ -31,7 +31,7 @@ public class SecurityConfig {
             throws Exception {
 
         http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(req -> req.requestMatchers("/auth/**")
+                .authorizeHttpRequests(req -> req.requestMatchers("/auth/**", "/h2/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated())

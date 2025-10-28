@@ -26,7 +26,8 @@ public class FelhasznaloController {
                 Date.from(Instant.now()),
                 "N",
                 "Elek1",
-                "pw1");
+                "pw1",
+                null);
         f = felhasznaloRepository.save(f);
         return f;
     }

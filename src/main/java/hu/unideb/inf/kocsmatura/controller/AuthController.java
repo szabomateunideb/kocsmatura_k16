@@ -1,6 +1,7 @@
 package hu.unideb.inf.kocsmatura.controller;
 
 import hu.unideb.inf.kocsmatura.service.AuthenticationService;
+import hu.unideb.inf.kocsmatura.service.dto.BejelentkezesDto;
 import hu.unideb.inf.kocsmatura.service.dto.RegisztracioDto;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,5 +21,10 @@ public class AuthController {
     @PostMapping("/regisztracio")
     public void regisztracio(@RequestBody RegisztracioDto dto){
         authService.regisztracio(dto);
+    }
+
+    @PostMapping("/bejelentkezes")
+    public void bejelentkezes(@RequestBody BejelentkezesDto dto){
+        authService.bejelentkezes(dto);
     }
 }

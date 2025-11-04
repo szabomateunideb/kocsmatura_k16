@@ -34,7 +34,7 @@ public class FelhasznaloEntity implements UserDetails {
     @Column(name = "password")
     private String jelszo;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<JogosultsagEntity> jogosultsagok;
 
     @Override

@@ -8,6 +8,11 @@ import hu.unideb.inf.kocsmatura.service.AuthenticationService;
 import hu.unideb.inf.kocsmatura.service.dto.BejelentkezesDto;
 import hu.unideb.inf.kocsmatura.service.dto.RegisztracioDto;
 import hu.unideb.inf.kocsmatura.service.mapper.FelhasznaloMapper;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +25,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JogosultsagRepository jogRepo;
     private final FelhasznaloRepository felhRepo;
+    private final AuthenticationManager authManager;
 
-    public AuthenticationServiceImpl(FelhasznaloMapper mapper, PasswordEncoder passwordEncoder, JogosultsagRepository jogRepo, FelhasznaloRepository felhRepo) {
+    public AuthenticationServiceImpl(FelhasznaloMapper mapper, PasswordEncoder passwordEncoder, JogosultsagRepository jogRepo, FelhasznaloRepository felhRepo, AuthenticationManager authManager) {
         this.mapper = mapper;
         this.passwordEncoder = passwordEncoder;
         this.jogRepo = jogRepo;
         this.felhRepo = felhRepo;
+        this.authManager = authManager;
     }
 
     @Override
@@ -49,5 +56,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public void bejelentkezes(BejelentkezesDto dto) {
 
+        SecurityContext context =
+                SecurityContextHolder.createEmptyContext();
+
+        Authentication auth = authManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        dto.getFelhasznalonev(),
+                        dto.getJelszo()
+                )
+        );
+
+        context.setAuthentication(auth);
+        SecurityContextHolder.setContext(context);
     }
 }

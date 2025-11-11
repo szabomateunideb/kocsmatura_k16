@@ -91,6 +91,13 @@
 			<artifactId>jjwt-api</artifactId>
 			<version>0.13.0</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.13.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

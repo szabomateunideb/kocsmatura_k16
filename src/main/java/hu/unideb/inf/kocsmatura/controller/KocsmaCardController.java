@@ -45,6 +45,8 @@ public class KocsmaCardController {
     //id nem létezik
     @PostMapping("/save")
     KocsmaCardDto save(@RequestBody KocsmaCardDto dto){
+        System.out.println("localhost:9090/api/pub/save"+dto.getNev());
+
         return kocsmaCardService.save(dto);
     }
 

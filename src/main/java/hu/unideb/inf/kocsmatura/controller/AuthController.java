@@ -3,10 +3,8 @@ package hu.unideb.inf.kocsmatura.controller;
 import hu.unideb.inf.kocsmatura.service.AuthenticationService;
 import hu.unideb.inf.kocsmatura.service.dto.BejelentkezesDto;
 import hu.unideb.inf.kocsmatura.service.dto.RegisztracioDto;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("auth")
@@ -16,6 +14,11 @@ public class AuthController {
 
     public AuthController(AuthenticationService authService) {
         this.authService = authService;
+    }
+
+    @RequestMapping(value = "/**", method = RequestMethod.OPTIONS)
+    public ResponseEntity<Void> handleOptions(){
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/regisztracio")
